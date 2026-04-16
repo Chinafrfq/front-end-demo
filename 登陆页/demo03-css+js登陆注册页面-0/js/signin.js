@@ -29,7 +29,7 @@ $(function () {
 			telEmail=$("#telEmail").val().trim();
 			pass=$("#pass").val().trim();
 			$.ajax({
-				url:"http://10.96.128.67/inserdata.php",
+				url:"https://YOUR_SERVER/api/auth",
 				data: {"telEmail":telEmail, "pass":pass},
 				type:"POST",
 				dataType:"json",
