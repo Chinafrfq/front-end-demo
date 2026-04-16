@@ -29,11 +29,35 @@
                 <div class="main-hotair">
                     <div class="content-wthree">
                         <h2>Log In</h2>
-                        <form action="#" method="post">
+                        <form action="#" method="post" id="loginForm">
                             <input type="text" class="text" name="text" placeholder="User Name" required="" autofocus>
                             <input type="password" class="password" name="password" placeholder="User Password" required="" autofocus>
+                            <p id="login-error" style="color:#ff6b6b;font-size:13px;margin:5px 0;min-height:18px;"></p>
                             <button class="btn" type="submit">Log In</button>
                         </form>
+                        <script>
+                        document.getElementById('loginForm').addEventListener('submit', function(e) {
+                            e.preventDefault();
+                            var username = this.querySelector('input[name="text"]').value.trim();
+                            var password = this.querySelector('input[name="password"]').value.trim();
+                            var errEl = document.getElementById('login-error');
+                            errEl.textContent = '';
+
+                            if (!username) {
+                                errEl.textContent = 'Please enter a username.';
+                                return;
+                            }
+                            if (!password) {
+                                errEl.textContent = 'Please enter a password.';
+                                return;
+                            }
+                            if (password.length < 6) {
+                                errEl.textContent = 'Password must be at least 6 characters.';
+                                return;
+                            }
+                            alert('Login successful!');
+                        });
+                        </script>
                         
                         <p class="account">Don't have an account? <a href="#signup">Register</a></p>
                     </div>

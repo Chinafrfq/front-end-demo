@@ -45,6 +45,31 @@
                                 注册
                             </a></p>
                     </form>
+                    <p id="login-error" style="color:#ff6b6b;font-size:13px;margin-top:5px;min-height:18px;text-align:center;"></p>
+                    <script>
+                    document.querySelector('.form form').addEventListener('submit', function(e) {
+                        e.preventDefault();
+                        var inputs = this.querySelectorAll('input');
+                        var username = inputs[0] ? inputs[0].value.trim() : '';
+                        var password = inputs[1] ? inputs[1].value.trim() : '';
+                        var errEl = document.getElementById('login-error');
+                        errEl.textContent = '';
+
+                        if (!username) {
+                            errEl.textContent = '请输入姓名';
+                            return;
+                        }
+                        if (!password) {
+                            errEl.textContent = '请输入密码';
+                            return;
+                        }
+                        if (password.length < 6) {
+                            errEl.textContent = '密码长度至少6位';
+                            return;
+                        }
+                        alert('登录成功');
+                    });
+                    </script>
                 </div>
             </div>
         </div>

@@ -17,7 +17,8 @@
 			<div class="login_box">
 				<input type="password" required="required" /><label>密码</label>
 			</div>
-			<a href="javascript:void(0)">
+			<p id="login-error" style="color:#ff6b6b;font-size:13px;margin-top:5px;text-align:center;min-height:18px;"></p>
+			<a href="javascript:void(0)" onclick="handleLogin()">
 				登录
 				<span></span>
 				<span></span>
@@ -25,5 +26,28 @@
 				<span></span>
 			</a>
 		</div>
+		<script>
+		function handleLogin() {
+			var inputs = document.querySelectorAll('.login_box input');
+			var username = inputs[0] ? inputs[0].value.trim() : '';
+			var password = inputs[1] ? inputs[1].value.trim() : '';
+			var errEl = document.getElementById('login-error');
+			errEl.textContent = '';
+
+			if (!username) {
+				errEl.textContent = '请输入用户名';
+				return;
+			}
+			if (!password) {
+				errEl.textContent = '请输入密码';
+				return;
+			}
+			if (password.length < 6) {
+				errEl.textContent = '密码长度至少6位';
+				return;
+			}
+			alert('登录成功');
+		}
+		</script>
 	</body>
 </html>
