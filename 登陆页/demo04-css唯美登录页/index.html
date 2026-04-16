@@ -26,7 +26,35 @@
   </body>
   <script>
     function login() {
+      var inputs = document.querySelectorAll('.login_form input');
+      var account = inputs[0] ? inputs[0].value.trim() : '';
+      var password = inputs[1] ? inputs[1].value.trim() : '';
+      var errEl = document.getElementById('login-error');
+      if (!errEl) {
+        errEl = document.createElement('p');
+        errEl.id = 'login-error';
+        errEl.style.color = '#ff6b6b';
+        errEl.style.fontSize = '14px';
+        errEl.style.marginTop = '10px';
+        errEl.style.textAlign = 'center';
+        document.querySelector('.btn').before(errEl);
+      }
+      errEl.textContent = '';
+
+      if (!account) {
+        errEl.textContent = '请输入账号';
+        return;
+      }
+      if (!password) {
+        errEl.textContent = '请输入密码';
+        return;
+      }
+      if (password.length < 6) {
+        errEl.textContent = '密码长度至少6位';
+        return;
+      }
       console.log("登录按钮点击了");
+      alert("登录成功");
     }
   </script>
   <style>

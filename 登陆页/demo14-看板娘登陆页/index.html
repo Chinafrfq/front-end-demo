@@ -120,7 +120,7 @@ body {
 </style>
 </head>
 <body class="text-center">
-<form class="form-signin" action="login.php" method="post">
+<form class="form-signin" action="login.php" method="post" id="loginForm">
 	<div id="stage">
 		<div id="inner">
 			<div id="cover">
@@ -255,6 +255,38 @@ window.addEventListener("load", () => {
 			state = 2;
 			coverPosition("80%");
 		}
+	});
+
+	// 表单验证
+	document.getElementById("loginForm").addEventListener("submit", (e) => {
+		e.preventDefault();
+		const username = document.querySelector('input[name="room"]').value.trim();
+		const password = document.querySelector('input[name="pass"]').value.trim();
+		let errEl = document.getElementById("login-error");
+		if (!errEl) {
+			errEl = document.createElement("p");
+			errEl.id = "login-error";
+			errEl.style.color = "#ff6b6b";
+			errEl.style.fontSize = "14px";
+			errEl.style.marginTop = "5px";
+			errEl.style.minHeight = "18px";
+			document.querySelector('button[type="submit"]').before(errEl);
+		}
+		errEl.textContent = "";
+
+		if (!username) {
+			errEl.textContent = "请输入用户名";
+			return;
+		}
+		if (!password) {
+			errEl.textContent = "请输入密码";
+			return;
+		}
+		if (password.length < 6) {
+			errEl.textContent = "密码长度至少6位";
+			return;
+		}
+		alert("登录成功");
 	});
 });
 </script>

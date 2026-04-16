@@ -50,4 +50,53 @@ window.onload = containerShow;
 
 })(window, document);
 
+// 登录验证
+((window, document) => {
+    let loginBtn = getSelector(".login-btn"),
+        signBtn = getSelector(".sign-btn");
+
+    loginBtn.onclick = () => {
+        let user = document.getElementById("login-user").value.trim();
+        let pass = document.getElementById("login-password").value.trim();
+        let errEl = document.querySelector(".login-box .form-error");
+        if (!errEl) {
+            errEl = document.createElement("p");
+            errEl.className = "form-error";
+            errEl.style.color = "#ff6b6b";
+            errEl.style.fontSize = "13px";
+            errEl.style.marginTop = "5px";
+            errEl.style.textAlign = "center";
+            loginBtn.before(errEl);
+        }
+        errEl.textContent = "";
+
+        if (!user) { errEl.textContent = "请输入用户名"; return; }
+        if (!pass) { errEl.textContent = "请输入密码"; return; }
+        if (pass.length < 6) { errEl.textContent = "密码长度至少6位"; return; }
+        alert("登录成功");
+    }
+
+    signBtn.onclick = () => {
+        let user = document.getElementById("sign-user").value.trim();
+        let pass = document.getElementById("sign-password").value.trim();
+        let errEl = document.querySelector(".sign-box .form-error");
+        if (!errEl) {
+            errEl = document.createElement("p");
+            errEl.className = "form-error";
+            errEl.style.color = "#ff6b6b";
+            errEl.style.fontSize = "13px";
+            errEl.style.marginTop = "5px";
+            errEl.style.textAlign = "center";
+            signBtn.before(errEl);
+        }
+        errEl.textContent = "";
+
+        if (!user) { errEl.textContent = "请输入用户名"; return; }
+        if (user.length < 2) { errEl.textContent = "用户名至少2个字符"; return; }
+        if (!pass) { errEl.textContent = "请输入密码"; return; }
+        if (pass.length < 6) { errEl.textContent = "密码长度至少6位"; return; }
+        alert("注册成功");
+    }
+})(window, document);
+
 // Ajax 请求发送

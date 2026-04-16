@@ -48,19 +48,36 @@ $(function () {
     });
 	
 	
-	/*验证电话及密码格式*/
+	/*验证电话、邮箱及密码格式*/
     function validate (input) {
            if($(input).attr('type') == 'tel' || $(input).attr('name') == 'tel') {
+               if($(input).val().trim() == '') {
+                   return false;
+               }
                if($(input).val().trim().match(/^[1](([3][0-9])|([4][5-9])|([5][0-3,5-9])|([6][5,6])|([7][0-8])|([8][0-9])|([9][1,8,9]))[0-9]{8}$/) == null) {
                    return false;
                }
            }
-		   
-		   if($(input).attr('type') == 'password' || $(input).attr('name') == 'pass') {
-		       if($(input).val().trim().match(/^[\w_-]{6,16}$/) == null) {
-		           return false;
-		       }
-		   }
+
+           if($(input).attr('type') == 'email' || $(input).attr('name') == 'email') {
+               if($(input).val().trim() == '') {
+                   return false;
+               }
+               if($(input).val().trim().match(/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/) == null) {
+                   return false;
+               }
+           }
+
+           if($(input).attr('type') == 'password' || $(input).attr('name') == 'pass') {
+               if($(input).val().trim() == '') {
+                   return false;
+               }
+               if($(input).val().trim().match(/^[\w_-]{6,16}$/) == null) {
+                   return false;
+               }
+           }
+
+           return true;
     }
 
     function showValidate(input) {
