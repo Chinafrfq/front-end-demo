@@ -31,7 +31,7 @@ $(function () {
 			email=$("#email").val().trim();
 			pass=$("#pass").val().trim();
 			$.ajax({
-					url:"http://10.96.128.67/inserdata.php",
+					url:"https://YOUR_SERVER/api/auth",
 					data: {"tel":tel,"email":email, "pass":pass},
 					type:"POST",
 					dataType:"json"
